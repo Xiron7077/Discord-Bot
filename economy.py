@@ -141,7 +141,7 @@ class economy(commands.Cog):
       return
     target = str(user).split('#')[0]
     add_coin(user.id, int(amount))
-    await ctx.send(f"**{amount}** coins {reco} have been added to {target}'s account!")
+    await ctx.send(f"**{amount}** {reco} have been added to {target}'s account!")
   
   @commands.command()
   @commands.guild_only()
@@ -150,7 +150,7 @@ class economy(commands.Cog):
     player_id = ctx.author.id
     value = check(player_id)[2]
     options = ['heads','tails']
-    choice_check = ['heads', 'head', 'tails', 'tail']
+    choice_check = ['heads', 'head', 'tails', 'tail', 't', 'h']
     if not check(player_id)[0]:
       msg = await ctx.send(f"Flipping reco {loading}")
       await asyncio.sleep(2)
@@ -199,6 +199,10 @@ class economy(commands.Cog):
       choice = "tails"
     elif choice == "head":
       choice = "heads"
+    elif choice == 'h':
+      choice = "heads"
+    elif choice == 't':
+      choice = "tails"
 
     profit = int(bet)*2
     game_choice = random.choice(options)
@@ -393,7 +397,6 @@ React with {tick} to accept or {cross} to decline""")
         opponent = player
         dm_check1 = dm_check2
         dm = await opp.send(embed=embed)
-      
       weapon = dm_check1[0]
       for n in range(2):
         for i in range(4):
@@ -411,10 +414,8 @@ React with {tick} to accept or {cross} to decline""")
             else:
               ATK2 = weapons_list1[i][3]
               Type2 = 'ATK'
-            if Spd2 < weapons_list1[i][5]:
-                Spd2 = weapons_list1[i][5] - 10
-            else:
-                Spd2 = weapons_list1[i][5]
+              
+            Spd2 = weapons_list1[i][5]
             weapon2 = weapons_list1[i][0]
             ab_type2 = weapons_list1[i][4]
           
@@ -481,7 +482,12 @@ React with {tick} to accept or {cross} to decline""")
 **{ab_type2} - {Spd2}**""")
         await asyncio.sleep(2)
         await channel.send(msg)
-
+        
+        if health1 < 0:
+          health1 = 0
+        elif health2 < 0:
+          health2 = 0
+          
       elif Spd2 > Spd1:
         if Type1 == "ATK" and Type2 == "ATK":
           health1 = health1 - ATK2
@@ -514,11 +520,17 @@ React with {tick} to accept or {cross} to decline""")
 **{ab_type1} - {Spd1}**""")
         await asyncio.sleep(1)
         await channel.send(msg)
+
+        if health1 < 0:
+          health1 = 0
+        elif health2 < 0:
+          health2 = 0
         
       elif Spd1 == Spd2:
         if Type1 == "DEF":
           msg = f"Nothing happened, you both scared {waiting}"
         elif Type1 == "ATK":
+          print('yes')
           health1 = health1 - ATK2
           health2 = health2 - ATK1
           msg = f"""{duel} Both player's attack landed
@@ -534,6 +546,11 @@ React with {tick} to accept or {cross} to decline""")
 **{ab_type1} - {Spd1}**""")
         await asyncio.sleep(2)
         await ctx.send(msg)
+
+        if health1 < 0:
+          health1 = 0
+        elif health2 < 0:
+          health2 = 0
 
       profit = bet*2
       
