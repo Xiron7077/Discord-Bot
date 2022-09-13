@@ -16,7 +16,7 @@ rexir.remove_command('help')
 
 
 def isitme(ctx):
-  return ctx.author.id == 501005884537831424
+  return ctx.author.id == User
 
 for filename in os.listdir('./cogs'):
   if filename.endswith('.py'):
