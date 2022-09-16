@@ -530,7 +530,6 @@ React with {tick} to accept or {cross} to decline""")
         if Type1 == "DEF":
           msg = f"Nothing happened, you both scared {waiting}"
         elif Type1 == "ATK":
-          print('yes')
           health1 = health1 - ATK2
           health2 = health2 - ATK1
           msg = f"""{duel} Both player's attack landed
