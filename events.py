@@ -1,6 +1,5 @@
 import discord
 from discord.ext import commands
-import main
 
 class event(commands.Cog):
 
@@ -14,5 +13,5 @@ class event(commands.Cog):
    if message.content.lower() in triggersofhey:
      await message.channel.send(f'Hey there {username}!')
 
-def setup(bot):
-  bot.add_cog(event(bot))
+async def setup(bot):
+  await bot.add_cog(event(bot))
