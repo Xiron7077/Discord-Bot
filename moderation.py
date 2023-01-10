@@ -1,6 +1,5 @@
 import discord
 from discord.ext import commands
-import main
 import os
 
 def check(id):
@@ -114,5 +113,5 @@ Moderator: {ctx.author.mention}""",
     await ctx.guild.unban(user=user)
     await ctx.send(embed=embed)
     
-def setup(bot):
-  bot.add_cog(moderation(bot))
+async def setup(bot):
+  await bot.add_cog(moderation(bot))
