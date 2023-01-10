@@ -24,5 +24,5 @@ class command(commands.Cog):
     await ctx.send('Member has been dmed.')
     await ctx.message.delete()
 
-def setup(bot):
-  bot.add_cog(command(bot))
+async def setup(bot):
+  await bot.add_cog(command(bot))
